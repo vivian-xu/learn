@@ -1,10 +1,25 @@
 # -*- Encoding: utf-8 -*-
+import re
 
 
 def parse(content):
     print '-------------------------------------------------'
     print content
 
+    key_ptn = re.compile(ur'<dt>(.*?)：</dt>')
+    key_ret = key_ptn.findall(content)
+
+    value_ptns = [
+        re.compile(ur'<a href.*?target="_blank">(.*?)</a>'),
+        re.compile(ur'<span class="item">(.*?)</span>')
+        ]
+
+    rets = []
+    for value_ptn in value_ptns:
+        rets.extend(value_ptn.findall(content))
+
+    print(','.join(key_ret))
+    print(','.join(rets))
 
 if __name__ == '__main__':
     import json
