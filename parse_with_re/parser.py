@@ -6,8 +6,20 @@ def parse(content):
     print '-------------------------------------------------'
     print content
 
+    items_ptn = re.compile(ur'<dt>(.*?)</dt>\s*<dd>(.*?)</dd>', re.DOTALL)
+    items_ret = items_ptn.findall(content)
+
+    for k, v in items_ret:
+        print '0'*30
+        print k, v
+'''
+    items_ptn = re.compile(ur'<dt>(.*?)：</dt>\s*<dd>(.*?)</dd>')
+    items_ret = items_ptn.search(content)
+
+
     key_ptn = re.compile(ur'<dt>(.*?)：</dt>')
     key_ret = key_ptn.findall(content)
+
 
     value_ptns = [
         re.compile(ur'<a href.*?target="_blank">(.*?)</a>'),
@@ -18,9 +30,10 @@ def parse(content):
     for value_ptn in value_ptns:
         rets.extend(value_ptn.findall(content))
 
+
     print(','.join(key_ret))
     print(','.join(rets))
-
+'''
 if __name__ == '__main__':
     import json
     data = None
