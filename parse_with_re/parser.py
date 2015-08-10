@@ -9,9 +9,14 @@ def parse(content):
     items_ptn = re.compile(ur'<dt>(.*?)</dt>\s*<dd>(.*?)</dd>', re.DOTALL)
     items_ret = items_ptn.findall(content)
 
+    value_ptn = re.compile(ur'>([^>]*?)</', re.DOTALL)
+
     for k, v in items_ret:
         print '0'*30
-        print k, v
+        ret = value_ptn.findall(v)
+        for i in ret:
+            print k, i
+
 '''
     items_ptn = re.compile(ur'<dt>(.*?)：</dt>\s*<dd>(.*?)</dd>')
     items_ret = items_ptn.search(content)
