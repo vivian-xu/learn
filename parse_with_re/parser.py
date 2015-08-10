@@ -15,7 +15,7 @@ def parse(content):
         print '0'*30
         ret = value_ptn.findall(v)
         for i in ret:
-            print k, i
+            print k[:-1], i
 
 '''
     items_ptn = re.compile(ur'<dt>(.*?)：</dt>\s*<dd>(.*?)</dd>')
